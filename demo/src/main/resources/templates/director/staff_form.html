@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating Staff</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container text-center">
+    <div th:if="${staff.id == null}"><h1>Add new Employee</h1></div>
+    <div th:unless="${staff.id == null}"><h1>Edit Employee</h1></div>
+    <form th:method="POST" th:action="@{/deputy-director/staff/save}" th:object="${staff}"
+          style="max-width: 600px; margin: 0 auto;">
+        <input type="hidden" th:field="*{id}" th:value="${staff.id}"/>
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Enter full name</label>
+                <div class="col-sm-4">
+                    <input type="text" th:field="${staff.fullName}" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Enter address</label>
+                <div class="col-sm-4">
+                    <input type="text" th:field="${staff.address}" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Enter passport nummer</label>
+                <div class="col-sm-4">
+                    <input type="text" th:field="${staff.passportNummer}" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Position</label>
+                <div class="col-sm-4">
+                    <select th:field="*{post}" class="form-control" required>
+                        <th:block th:each="post : ${listPost}">
+                            <option th:text="${post.position}" th:value="${post.id}"/>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+            <div class="text-center p-3">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

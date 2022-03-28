@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Staff</h1></div>
+    <div><h2><a th:href="@{/deputy-director/staff/newStaff}">Add new Employee</a></h2></div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Address</th>
+                <th>Passport Nummer</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr:block>
+                <tr th:each="staff : ${staffList}">
+                    <td th:text="${staff.id}"></td>
+                    <td th:text="${staff.fullName}"></td>
+                    <td th:text="${staff.address}"></td>
+                    <td th:text="${staff.passportNummer}"></td>
+                    <td th:text="${staff.post.position}"></td>
+                    <td th:text="${staff.post.salary}"></td>
+                    <td>
+                        <a th:href="@{'/deputy-director/staff/edit/' + ${staff.id}}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/deputy-director/staff/delete/' + ${staff.id}}">Delete</a>
+                    </td>
+                </tr>
+            </tr:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

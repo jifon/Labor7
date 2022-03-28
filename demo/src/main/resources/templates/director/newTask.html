@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating new Task</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/task}" th:object="${newTask}">
+    <label for="def">Enter definition :</label>
+    <input type="text" th:field="${newTask.definition}" id="def">
+    <br/>
+    <label for="deadline">Enter deadline :</label>
+    <input type="date" pattern = "yyyy-MM-dd" th:field="${newTask.executingTime}" id="deadline">
+    <br/>
+    <label for="status">Enter definition :</label>
+    <input type="text" th:field="${newTask.status}" id="status">
+    <br/>
+    <label for="staff">Enter employee :</label>
+    <input type="number" th:field="${newTask.staff}" id="staff">
+    <br/>
+    <label for="tour">Enter tour ID :</label>
+    <input type="number" th:field="${newTask.tour}" id="tour">
+    <br/>
+    <input type="submit" value="Create!"/>
+
+
+</form>
+</body>
+</html>

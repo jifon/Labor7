@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Staff</h1></div>
+    <div><h2><a th:href="@{/former/tour/tour-tour/newTour}">Add new Tour</a></h2></div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Tour Name</th>
+                <th>Type of Tour</th>
+                <th>Country</th>
+                <th>Description</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr:block>
+                <tr th:each="tour : ${tours}">
+                    <td th:text="${tour.id}"></td>
+                    <td th:text="${tour.startDate}"></td>
+                    <td th:text="${tour.endDate}"></td>
+                    <td th:text="${tour.tourName}"></td>
+                    <td th:text="${tour.tourType.type}"></td>
+                    <td th:text="${tour.countries.name}"></td>
+                    <td>
+                        <a th:href="@{'/former/tour/tour-tour/edit/' + ${tour.id}}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/former/tour/tour-tour/delete/' + ${tour.id}}">Delete</a>
+                    </td>
+                </tr>
+            </tr:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

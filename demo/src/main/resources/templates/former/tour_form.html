@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating Staff</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container text-center">
+    <div th:if="${tours.id == null}"><h1>Add new Tour</h1></div>
+    <div th:unless="${tours.id == null}"><h1>Edit Tour</h1></div>
+    <form th:method="POST" th:action="@{/former/tour/tour-tour/save}" th:object="${tours}"
+          style="max-width: 600px; margin: 0 auto;">
+        <input type="hidden" th:field="*{id}" th:value="${tours.id}"/>
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Enter Start Date</label>
+                <div class="col-sm-4">
+                    <input type="date" th:field="${tours.startDate}" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Enter End Date</label>
+                <div class="col-sm-4">
+                    <input type="date" th:field="${tours.endDate}" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Enter Tour Name</label>
+                <div class="col-sm-4">
+                    <input type="text" th:field="${tours.tourName}" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Type Of Tour</label>
+                <div class="col-sm-4">
+                    <select th:field="*{tourType}" class="form-control" required>
+                        <th:block th:each="typee : ${types}">
+                            <option th:text="${typee.type}" th:value="${typee.id}"/>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Country</label>
+                <div class="col-sm-4">
+                    <select th:field="*{countries}" class="form-control" required>
+                        <th:block th:each="countr : ${country}">
+                            <option th:text="${countr.name}" th:value="${countr.id}"/>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Task</label>
+                <div class="col-sm-4">
+                    <select th:field="*{tourTasks}" class="form-control" required>
+                        <th:block th:each="countr : ${tasks}">
+                            <option th:text="${countr.description}" th:value="${countr.id}"/>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+            <div  class="text-center p-3">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Room List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Staff</h1></div>
+    <div><h2><a th:href="@{/former/tour/room/newRoom}">Add Hotel Room</a></h2></div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Check in</th>
+                <th>Check out</th>
+                <th>Room number</th>
+                <th>Room Category</th>
+                <th>City</th>
+                <th>Hotel Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr:block>
+                <tr th:each="rom : ${room}">
+                    <td th:text="${rom.id}"></td>
+                    <td th:text="${rom.checkIn}"></td>
+                    <td th:text="${rom.check_out}"></td>
+                    <td th:text="${rom.roomNumber}"></td>
+                    <td th:text="${rom.hotelRoomCategory}"></td>
+                    <td th:text="${rom.hotel.city}"></td>
+                    <td th:text="${rom.hotel.name}"></td>
+                    <td>
+                        <a th:href="@{'/former/tour/room/edit/' + ${rom.id}}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/former/tour/room/delete/' + ${rom.id}}">Delete</a>
+                    </td>
+                </tr>
+            </tr:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating Position</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container text-center">
+    <div th:if="${post.id == null}"><h1>Create new Position</h1></div>
+    <div th:unless="${post.id == null}"><h1>Edit Position</h1></div>
+    <form  th:action="@{/deputy-director/posts/save}" th:object="${post}" th:method="POST"
+    style="max-width: 600px; margin: 0 auto;">
+        <input type="hidden" th:field="*{id}" th:value="${post.id}"/>
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Enter new position:</label>
+                <div class="col-sm-4">
+                    <input type="text" th:field="${post.position}" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Enter salary:</label>
+                <div class="col-sm-4">
+                    <input type="number" th:field="${post.salary}" class="form-control" required />
+                </div>
+            </div>
+            <div class="text-center p-3">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

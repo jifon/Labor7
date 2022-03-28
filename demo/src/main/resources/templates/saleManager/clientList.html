@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Staff</h1></div>
+    <div><h2><a th:href="@{/sale-manager/client/newClient}">Add new Client</a></h2></div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr:block>
+                <tr th:each="cl : ${clients}">
+                    <td th:text="${cl.id}"></td>
+                    <td th:text="${cl.fullName}"></td>
+                    <td th:text="${cl.address}"></td>
+                    <td th:text="${cl.clientPhoneNumber}"></td>
+                    <td>
+                        <a th:href="@{'/sale-manager/client/edit/' + ${cl.id}}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/sale-manager/client/delete/' + ${cl.id}}">Delete</a>
+                    </td>
+                </tr>
+            </tr:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

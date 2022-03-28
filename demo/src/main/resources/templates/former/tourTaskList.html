@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Tour Tasks</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Tour Tasks</h1></div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Task ID</th>
+                <th>Description</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tr:block>
+                <tr th:each="task : ${taskList}">
+                    <td th:text="${task.id}"></td>
+                    <td th:text="${task.description}"></td>
+                    <td th:text="${task.executingTime}"></td>
+                    <td th:text="${task.status.status}"></td>
+                    <td>
+                        <a th:href="@{'/former/tour-task/edit/' + ${task.id}}">Edit</a>
+                    </td>
+                </tr>
+            </tr:block>
+        </table>
+    </div>
+</div>
+</body>
+</html>

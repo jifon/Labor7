@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Flights</h1></div>
+    <div><h2><a th:href="@{/former/tour/ticket/newTicket}">Add new Air Ticket</a></h2></div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Flight Code</th>
+                <th>Airline</th>
+                <th>Class</th>
+                <th>Seat on the plane</th>
+                <th>Date of Departure</th>
+                <th>City of Departure</th>
+                <th>City of Arrival</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr:block>
+                <tr th:each="air : ${ticket}">
+                    <td th:text="${air.id}"></td>
+                    <td th:text="${air.tourFlights.flightCode}"></td>
+                    <td th:text="${air.tourFlights.airline}"></td>
+                    <td th:text="${air.airTicketsClass}"></td>
+                    <td th:text="${air.place}"></td>
+                    <td th:text="${air.tourFlights.departureDate}"></td>
+                    <td th:text="${air.tourFlights.departureCity}"></td>
+                    <td th:text="${air.tourFlights.cityOfArrival}"></td>
+                    <td>
+                        <a th:href="@{'/former/tour/ticket/edit/' + ${air.id}}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/former/tour/ticket/delete/' + ${air.id}}">Delete</a>
+                    </td>
+                </tr>
+            </tr:block>
+            </tbody>
+        </table>
+    </div>
